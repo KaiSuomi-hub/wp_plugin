@@ -158,7 +158,7 @@ class Autosoftajson {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		
 		// we add an url to look for
-		$this->loader->add_action( 'init', $plugin_admin, 'get_json_url' );
+        // $this->loader->add_action( 'init', $plugin_admin, 'post' );
 
 	}
 
