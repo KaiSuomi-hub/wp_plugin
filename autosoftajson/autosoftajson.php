@@ -1,6 +1,6 @@
 <?php
 function json_add_settings_page() {
-    add_options_page( 'AutoSofta API', 'Add AutoSofta key', 'manage_options', 'autosofta-json-plugin', 'json_render_plugin_settings_page' );
+    add_options_page( 'AutoSofta API', 'Edit AutoSofta values', 'manage_options', 'autosofta-json-plugin', 'json_render_plugin_settings_page' );
 }
 add_action( 'admin_menu', 'json_add_settings_page' );
 /**
@@ -83,41 +83,4 @@ function run_autosoftajson() {
 
 }
 run_autosoftajson();
-?>
-
-<?php
-
-function json_render_plugin_settings_page() {
-    ?>
-    <h2>Add api key for autosofta</h2>
-    <form action="options.php" method="post">
-
-        <?php 
-        settings_fields( 'autosofta_json_plugin_options' );
-        do_settings_sections( 'autosofta_json_plugin' ); ?>
-        <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save' ); ?>" />
-    </form>
-    <?php
-}
-// lets register settings
-function autosofta_json_register_settings() {
-    register_setting( 'autosofta_json_plugin_options', 'autosofta_json_plugin_options', 'autosofta_json_plugin_options_validate' );
-    add_settings_section( 'api_settings', 'API Settings', 'autosofta_json_section_text', 'autosofta_json_plugin' );
-
-    add_settings_field( 'autosofta_json_setting_api_key', 'API Key', 'autosofta_json_setting_api_key', 'autosofta_json_plugin', 'api_settings' );
-
-}
-// we call settings
-add_action( 'admin_init', 'autosofta_json_register_settings' );
-
-// we add settings fields
-function autosofta_json_section_text() {
-    echo '<p>Here you can set all the options for using the API</p>';
-}
-
-function autosofta_json_setting_api_key() {
-    $options = get_option( 'autosofta_json_plugin_options' );
-    echo "<input id='autosofta_json_setting_api_key' name='autosofta_json_plugin_options[api_key]' type='text' value='" . esc_attr( $options['api_key'] ) . "' />";
-}
-
 ?>

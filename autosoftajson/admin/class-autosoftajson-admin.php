@@ -1,5 +1,59 @@
 <?php
 
+function json_render_plugin_settings_page() {
+    ?>
+    <h2>Add api key for autosofta</h2>
+    <form action="options.php" method="post">
+
+        <?php 
+        settings_fields( 'autosofta_json_plugin_options' );
+        do_settings_sections( 'autosofta_json_plugin' ); ?>
+        <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save' ); ?>" />
+    </form>
+    <?php
+	  ?>
+	  
+	  <?php
+}
+// lets register settings
+function autosofta_json_register_settings() {
+    register_setting( 'autosofta_json_plugin_options', 'autosofta_json_plugin_options', 'autosofta_json_plugin_options_validate' );
+	// section for api
+    add_settings_section( 'api_settings', 'API Settings', 'autosofta_json_section_text', 'autosofta_json_plugin' );
+	// field for api
+    add_settings_field( 'autosofta_json_setting_api_key', 'API Key', 'autosofta_json_setting_api_key', 'autosofta_json_plugin', 'api_settings' );
+
+	// section for api
+	add_settings_section( 'api_settings', 'Color', 'autosofta_json_section_text', 'autosofta_json_plugin' );
+	// field for hover color
+    add_settings_field( 'autosofta_json_setting_hover', '', 'autosofta_json_setting_hover', 'autosofta_json_plugin', 'api_settings' );
+
+}
+
+// we call settings
+add_action( 'admin_init', 'autosofta_json_register_settings' );	
+
+
+
+
+// we add section for api
+function autosofta_json_section_text() {
+    echo '<p>Here you can set all the options for using the API</p>';
+}
+
+// actual input field for api key
+function autosofta_json_setting_api_key() {
+    $options = get_option( 'autosofta_json_plugin_options' );
+    echo "<input id='autosofta_json_setting_api_key' name='autosofta_json_plugin_options[api_key]' type='text' value='" . esc_attr( $options['api_key'] ) . "' /><br>";
+}	
+	
+// actual input field for color key
+
+function autosofta_json_setting_hover(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+    echo "<h1>Select colors for cards</h1>hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
+}
+
 
 /**
  * The admin-specific functionality of the plugin.

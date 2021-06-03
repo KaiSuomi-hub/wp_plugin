@@ -1,12 +1,27 @@
 // Colors
+// here we define the main colors
 
-$darkblue: #132F62;
-$blue: #00A5E1;
+// hover color for buttons
+$darkblue: #0000ff;
+
+// button, slider, pricetag, select border, contact buttons color
+// lataa lisaa:hover <a>
+$blue: #5f5db9;
+
+// not in use
 $darkgreen: #678d11;
+
+// not in use
 $green: #118d11;
-$black: #373535;
-$white: #fff;
-$grey: #7a7a7a;
+
+// auto blurb <p> <h1>
+$black: #000000;
+
+// background for cards button text
+$white: #ffffff;
+
+//filter container background
+$grey: #7c7c7c;
 
 // Other
 
@@ -18,7 +33,7 @@ $shadow: 0px 0px 10px rgba($black, 0.2);
 // Single car page
 
 .single-car {
-	padding: 15px;
+	padding: 30px;
 	font-size: $fontsize;
 	font-family: $font;
 	line-height: 1.4;
@@ -26,7 +41,6 @@ $shadow: 0px 0px 10px rgba($black, 0.2);
 	@media (min-width: 576px) {
 		padding: $sectionpadding;
 	}
-
 	.single-car-content {
 		display: block;
 		width: 100%;
