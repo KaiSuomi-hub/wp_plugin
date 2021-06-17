@@ -27,6 +27,12 @@ function autosofta_json_register_settings() {
 	add_settings_section( 'api_settings', 'Color', 'autosofta_json_section_text', 'autosofta_json_plugin' );
 	// field for hover color
     add_settings_field( 'autosofta_json_setting_hover', '', 'autosofta_json_setting_hover', 'autosofta_json_plugin', 'api_settings' );
+	// field for button color
+    add_settings_field( 'autosofta_json_setting_button', '', 'autosofta_json_setting_button', 'autosofta_json_plugin', 'api_settings' );
+	// field for  paragraph color
+    add_settings_field( 'autosofta_json_setting_para', '', 'autosofta_json_setting_para', 'autosofta_json_plugin', 'api_settings' );
+	// field for background color
+    add_settings_field( 'autosofta_json_setting_bg', '', 'autosofta_json_setting_bg', 'autosofta_json_plugin', 'api_settings' );
 
 }
 
@@ -47,13 +53,31 @@ function autosofta_json_setting_api_key() {
     echo "<input id='autosofta_json_setting_api_key' name='autosofta_json_plugin_options[api_key]' type='text' value='" . esc_attr( $options['api_key'] ) . "' /><br>";
 }	
 	
-// actual input field for color key
+// actual input field for hover color 
 
 function autosofta_json_setting_hover(){
 	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "<h1>Select colors for cards</h1>hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
+    echo "<h1>Select colors for cards and single car</h1>Hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
+}
+// actual input field for button color
+
+function autosofta_json_setting_button(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+    echo "Button<br><input id='autosofta_json_setting_button' name='autosofta_json_plugin_options[button]' type='text' value='" . esc_attr( $options['button'] ) . "' />";
 }
 
+// actual input field for paragraph color 
+
+function autosofta_json_setting_para(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+    echo "Paragraph<br><input id='autosofta_json_setting_para' name='autosofta_json_plugin_options[para]' type='text' value='" . esc_attr( $options['para'] ) . "' />";
+}
+// actual input field for background  color 
+
+function autosofta_json_setting_bg(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+    echo "Background<br><input id='autosofta_json_setting_bg' name='autosofta_json_plugin_options[bg]' type='text' value='" . esc_attr( $options['bg'] ) . "' />";
+}
 
 /**
  * The admin-specific functionality of the plugin.
