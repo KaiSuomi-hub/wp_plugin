@@ -23,7 +23,7 @@ function autosofta_json_register_settings() {
 	// field for api
     add_settings_field( 'autosofta_json_setting_api_key', 'API Key', 'autosofta_json_setting_api_key', 'autosofta_json_plugin', 'api_settings' );
 
-	// section for api
+	// section for Color
 	add_settings_section( 'api_settings', 'Color', 'autosofta_json_section_text', 'autosofta_json_plugin' );
 	// field for hover color
     add_settings_field( 'autosofta_json_setting_hover', '', 'autosofta_json_setting_hover', 'autosofta_json_plugin', 'api_settings' );
@@ -33,6 +33,12 @@ function autosofta_json_register_settings() {
     add_settings_field( 'autosofta_json_setting_para', '', 'autosofta_json_setting_para', 'autosofta_json_plugin', 'api_settings' );
 	// field for background color
     add_settings_field( 'autosofta_json_setting_bg', '', 'autosofta_json_setting_bg', 'autosofta_json_plugin', 'api_settings' );
+
+	// section for mileage and year
+	// field for hover color
+    add_settings_field( 'autosofta_json_setting_mileage', '', 'autosofta_json_setting_mileage', 'autosofta_json_plugin', 'api_settings' );
+	// field for button color
+    add_settings_field( 'autosofta_json_setting_year', '', 'autosofta_json_setting_year', 'autosofta_json_plugin', 'api_settings' );
 
 }
 
@@ -57,7 +63,7 @@ function autosofta_json_setting_api_key() {
 
 function autosofta_json_setting_hover(){
 	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "<h1>Select colors for cards and single car</h1>Hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
+    echo "<h4>Select colors for cards and single car</h4>Hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
 }
 // actual input field for button color
 
@@ -79,6 +85,22 @@ function autosofta_json_setting_bg(){
     echo "Background<br><input id='autosofta_json_setting_bg' name='autosofta_json_plugin_options[bg]' type='text' value='" . esc_attr( $options['bg'] ) . "' />";
 }
 
+// we add section for api
+function autosofta_json_section_ticks() {
+    echo '<p>Here you can choose if we show the mileage</p>';
+}
+
+// do we show mileage?
+
+function autosofta_json_setting_mileage(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+    echo "Mileage shown<br><input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' value='" . esc_attr( $options['mileage'] ) . "' />";
+}
+// do we show year
+function autosofta_json_setting_year(){
+	$options = get_option( 'autosofta_json_plugin_options' );
+	echo "Year shown shown<br><input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' value='" . esc_attr( $options['mileage'] ) . "' />";
+}
 /**
  * The admin-specific functionality of the plugin.
  *
