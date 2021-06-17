@@ -37,8 +37,7 @@ function autosofta_json_register_settings() {
 	// section for mileage and year
 	// field for hover color
     add_settings_field( 'autosofta_json_setting_mileage', '', 'autosofta_json_setting_mileage', 'autosofta_json_plugin', 'api_settings' );
-	// field for button color
-    add_settings_field( 'autosofta_json_setting_year', '', 'autosofta_json_setting_year', 'autosofta_json_plugin', 'api_settings' );
+	
 
 }
 
@@ -94,13 +93,13 @@ function autosofta_json_section_ticks() {
 
 function autosofta_json_setting_mileage(){
 	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "Mileage shown<br><input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' value='" . esc_attr( $options['mileage'] ) . "' />";
+	$mileage = esc_attr( $options['mileage'] );
+    echo "Mileage and year shown<br>
+	<input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' "; 
+	if ($mileage == '1') echo "checked='checked'";
+	echo " value='1' />";
 }
-// do we show year
-function autosofta_json_setting_year(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-	echo "Year shown shown<br><input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' value='" . esc_attr( $options['mileage'] ) . "' />";
-}
+
 /**
  * The admin-specific functionality of the plugin.
  *
