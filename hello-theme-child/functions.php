@@ -5,12 +5,16 @@
  * @package HelloElementorChild
  */
 
+// edited by antti 17.6
+// added dynamic php-style
+
 /**
  * Load child theme css and optional scripts
  * @return void
  */
 function hello_elementor_child_enqueue_styles() {
-	wp_enqueue_style('hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.css');
+	// here we load style via php
+	wp_enqueue_style('hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.php');
 	wp_enqueue_style('fontawesome', get_stylesheet_directory_uri() . '/fontawesome/font-awesome.min.css');
 	wp_enqueue_style('slick', get_stylesheet_directory_uri() . '/slick-1.8.1/slick.css');
 	wp_enqueue_style('slick-theme', get_stylesheet_directory_uri() . '/lightbox/lightbox.css');

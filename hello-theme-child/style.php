@@ -1,8 +1,10 @@
-@charset "UTF-8";
-.single-car {
+<?php
+    header("Content-type: text/css; charset: UTF-8");
+?>
+
+<? echo '.single-car {
   padding: 30px;
   font-size: 18px;
-  font-family: "Open Sans", Sans-serif;
   line-height: 1.4;
 }
 @media (min-width: 576px) {
@@ -14,6 +16,8 @@
   display: block;
   width: 100%;
   color: #000000;
+  font-family: "roboto";
+
 }
 .single-car .single-car-content .car-section {
   max-width: 1024px;
@@ -705,4 +709,5 @@ article > .car-card {
 .car-card .inner .phonelink:hover {
   background-color: #00aaff;
   text-decoration: none;
-}
+}';
+?>
