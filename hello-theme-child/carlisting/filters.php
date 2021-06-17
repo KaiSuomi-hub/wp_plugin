@@ -1,7 +1,42 @@
 <?php
 /**
+ * show or hide sliders and
  * Generate alm filters
  */
+$options = get_option( 'autosofta_json_plugin_options' );
+$mileage = esc_attr( $options['mileage'] );
+if ($mileage == '1') $sliders = array(
+array(
+    "key" =>  "meta",
+    "field_type" => "range_slider",
+    "classes"      => "year",
+    "meta_key" =>  "car_vuosimalli",
+    "meta_operator" => "BETWEEN",
+    "meta_type" =>  "NUMERIC",
+    "label" => __('Vuosimalli'),
+    "rangeslider_min" => $yearMin,
+    "rangeslider_max" => $yearMax,
+    "rangeslider_steps" => "1", 
+    "rangeslider_start" => $yearMin,
+    "rangeslider_end" =>  $yearMax,
+    "rangeslider_decimals" => "false"
+),                  
+
+array(
+    "key" =>  "meta",
+    "field_type" => "range_slider",
+    "classes"      => "km",
+    "meta_key" =>  "car_km",
+    "meta_operator" =>  "BETWEEN",
+    "meta_type" =>  "NUMERIC",
+    "label" => __('Mittarilukema'),
+    "rangeslider_min" => $kmMin,
+    "rangeslider_max" => $kmMax,
+    "rangeslider_steps" => "10000",
+    "rangeslider_start" => $kmMin,
+    "rangeslider_end" =>  $kmMax,
+    "rangeslider_decimals" => "false"
+));      
 ?>
 
 <a href="#/" id="show-filters"><?php _e('Näytä hakuehdot'); ?></a>
@@ -165,37 +200,8 @@
 
             // Range sliders
 
-            array(
-                "key" =>  "meta",
-                "field_type" => "range_slider",
-                "classes"      => "year",
-                "meta_key" =>  "car_vuosimalli",
-                "meta_operator" => "BETWEEN",
-                "meta_type" =>  "NUMERIC",
-                "label" => __('Vuosimalli'),
-                "rangeslider_min" => $yearMin,
-                "rangeslider_max" => $yearMax,
-                "rangeslider_steps" => "1", 
-                "rangeslider_start" => $yearMin,
-                "rangeslider_end" =>  $yearMax,
-                "rangeslider_decimals" => "false"
-            ),                  
-
-            array(
-                "key" =>  "meta",
-                "field_type" => "range_slider",
-                "classes"      => "km",
-                "meta_key" =>  "car_km",
-                "meta_operator" =>  "BETWEEN",
-                "meta_type" =>  "NUMERIC",
-                "label" => __('Mittarilukema'),
-                "rangeslider_min" => $kmMin,
-                "rangeslider_max" => $kmMax,
-                "rangeslider_steps" => "10000",
-                "rangeslider_start" => $kmMin,
-                "rangeslider_end" =>  $kmMax,
-                "rangeslider_decimals" => "false"
-            ),                              
+          $sliders[0],
+          $sliders[1],                        
 
             // Ordering 
 
