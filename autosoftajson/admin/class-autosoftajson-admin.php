@@ -6,7 +6,7 @@ function json_render_plugin_settings_page() {
     <form action="options.php" method="post">
 
         <?php 
-        settings_fields( 'autosofta_json_plugin_options' );
+        settings_fields('autosofta_json_plugin_options');
         do_settings_sections( 'autosofta_json_plugin' ); ?>
         <input name="submit" class="button button-primary" type="submit" value="<?php esc_attr_e( 'Save' ); ?>" />
     </form>
@@ -15,34 +15,75 @@ function json_render_plugin_settings_page() {
 	  
 	  <?php
 }
-// lets register settings
+// Let's create a sanitizing call back for options before registering them
+function autosofta_json_plugin_clean($option){
+	$option = 	sanitize_key($option);
+ 	return $option;
+}
+
+// lets register settings for api
 function autosofta_json_register_settings() {
-    register_setting( 'autosofta_json_plugin_options', 'autosofta_json_plugin_options', 'autosofta_json_plugin_options_validate' );
+    register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_plugin_options', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+	);
 	// section for api
     add_settings_section( 'api_settings', 'API Settings', 'autosofta_json_section_text', 'autosofta_json_plugin' );
-	// field for api
-    add_settings_field( 'autosofta_json_setting_api_key', 'API Key', 'autosofta_json_setting_api_key', 'autosofta_json_plugin', 'api_settings' );
+	// field for api key
+    
+	add_settings_field( 'autosofta_json_setting_api_key', 'API Key', 'autosofta_json_setting_api_key', 'autosofta_json_plugin', 'api_settings' );   
+// hover
+register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_color_hover', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+);
+// button
+register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_color_button', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+);
+// pa
+register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_color_hover', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+);
 
-	// section for Color
-	add_settings_section( 'api_settings', 'Color', 'autosofta_json_section_text', 'autosofta_json_plugin' );
+register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_color_button', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+);
+register_setting( 
+	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
+	'autosofta_json_color_button', //here we have the actual name and mysql option_name, this is it, when changed added a new empty row
+	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
+);
 	// field for hover color
     add_settings_field( 'autosofta_json_setting_hover', '', 'autosofta_json_setting_hover', 'autosofta_json_plugin', 'api_settings' );
 	// field for button color
     add_settings_field( 'autosofta_json_setting_button', '', 'autosofta_json_setting_button', 'autosofta_json_plugin', 'api_settings' );
-	// field for  paragraph color
-    add_settings_field( 'autosofta_json_setting_para', '', 'autosofta_json_setting_para', 'autosofta_json_plugin', 'api_settings' );
-	// field for background color
-    add_settings_field( 'autosofta_json_setting_bg', '', 'autosofta_json_setting_bg', 'autosofta_json_plugin', 'api_settings' );
 
-	// section for mileage and year
-	// field for hover color
-    add_settings_field( 'autosofta_json_setting_mileage', '', 'autosofta_json_setting_mileage', 'autosofta_json_plugin', 'api_settings' );
-	
 
 }
 
+
+	// // field for  paragraph color
+    // add_settings_field( 'autosofta_json_setting_para', '', 'autosofta_json_setting_para', 'autosofta_json_plugin', 'api_settings' );
+	// // field for background color
+    // add_settings_field( 'autosofta_json_setting_bg', '', 'autosofta_json_setting_bg', 'autosofta_json_plugin', 'api_settings' );
+
+	// // section for mileage and year
+	// // field for hover color
+    // add_settings_field( 'autosofta_json_setting_mileage', '', 'autosofta_json_setting_mileage', 'autosofta_json_plugin', 'api_settings' );
+	
+
+
 // we call settings
-add_action( 'admin_init', 'autosofta_json_register_settings' );	
+add_action( 'admin_init', 'autosofta_json_register_settings');	
 
 
 
@@ -55,50 +96,55 @@ function autosofta_json_section_text() {
 // actual input field for api key
 function autosofta_json_setting_api_key() {
     $options = get_option( 'autosofta_json_plugin_options' );
-    echo "<input id='autosofta_json_setting_api_key' name='autosofta_json_plugin_options[api_key]' type='text' value='" . esc_attr( $options['api_key'] ) . "' /><br>";
+    //notice the difference to below. we pass along a normal string below, instead of an array
+    echo "<input id='autosofta_json_setting_api_key' name='autosofta_json_plugin_options' type='text' value='" . esc_attr( $options ) . "' /><br>";
+
 }	
-	
+
+
+
 // actual input field for hover color 
 
 function autosofta_json_setting_hover(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "<h4>Select colors for cards and single car</h4>Hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_plugin_options[hover]' type='text' value='" . esc_attr( $options['hover'] ) . "' />";
+	$options = get_option( 'autosofta_json_color_hover' );
+    echo "<h4>Select colors for cards and single car</h4>
+	Hover<br></hover><input id='autosofta_json_setting_hover' name='autosofta_json_color_hover' type='text' value='" . esc_attr( $options ) . "' />";
 }
+
 // actual input field for button color
-
 function autosofta_json_setting_button(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "Button<br><input id='autosofta_json_setting_button' name='autosofta_json_plugin_options[button]' type='text' value='" . esc_attr( $options['button'] ) . "' />";
+	$options = get_option( 'autosofta_json_color_button' );
+    echo "Button<br><input id='autosofta_json_setting_button' name='autosofta_json_color_button' type='text' value='" . esc_attr( $options ) . "' />";
 }
 
-// actual input field for paragraph color 
+// // actual input field for paragraph color 
 
-function autosofta_json_setting_para(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "Paragraph<br><input id='autosofta_json_setting_para' name='autosofta_json_plugin_options[para]' type='text' value='" . esc_attr( $options['para'] ) . "' />";
-}
-// actual input field for background  color 
+// function autosofta_json_setting_para(){
+// 	$options = get_option( 'autosofta_json_plugin_options' );
+//     echo "Paragraph<br><input id='autosofta_json_setting_para' name='autosofta_json_plugin_options[para]' type='text' value='" . esc_attr( $options['para'] ) . "' />";
+// }
+// // actual input field for background  color 
 
-function autosofta_json_setting_bg(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-    echo "Background<br><input id='autosofta_json_setting_bg' name='autosofta_json_plugin_options[bg]' type='text' value='" . esc_attr( $options['bg'] ) . "' />";
-}
+// function autosofta_json_setting_bg(){
+// 	$options = get_option( 'autosofta_json_plugin_options' );
+//     echo "Background<br><input id='autosofta_json_setting_bg' name='autosofta_json_plugin_options[bg]' type='text' value='" . esc_attr( $options['bg'] ) . "' />";
+// }
 
-// we add section for api
-function autosofta_json_section_ticks() {
-    echo '<p>Here you can choose if we show the mileage</p>';
-}
+// // we add section for api
+// function autosofta_json_section_ticks() {
+//     echo '<p>Here you can choose if we show the mileage</p>';
+// }
 
-// do we show mileage?
+// // do we show mileage?
 
-function autosofta_json_setting_mileage(){
-	$options = get_option( 'autosofta_json_plugin_options' );
-	$mileage = esc_attr( $options['mileage'] );
-    echo "Mileage and year shown<br>
-	<input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' "; 
-	if ($mileage == '1') echo "checked='checked'";
-	echo " value='1' />";
-}
+// function autosofta_json_setting_mileage(){
+// 	$options = get_option( 'autosofta_json_plugin_options' );
+// 	$mileage = esc_attr( $options['mileage'] );
+//     echo "Mileage and year shown<br>
+// 	<input id='autosofta_json_setting_mileage' name='autosofta_json_plugin_options[mileage]' type='checkbox' "; 
+// 	if ($mileage == '1') echo "checked='checked'";
+// 	echo " value='1' />";
+// }
 
 /**
  * The admin-specific functionality of the plugin.
