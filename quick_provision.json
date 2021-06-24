@@ -1,0 +1,17 @@
+{
+    "themes": [
+        "hello-elementor"
+    ],
+    "plugins": [
+        "elementor",
+        "all-in-one-wp-migration",
+        "envato-elements",
+        "really-simple-ssl",
+        "seo-by-rank-math",
+        "official-facebook-pixel",
+        "google-site-kit",
+        "webp-converter-for-media",
+        "autoptimize"
+
+    ]
+}
