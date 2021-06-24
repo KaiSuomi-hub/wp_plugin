@@ -3,8 +3,8 @@
  * show or hide sliders and
  * Generate alm filters
  */
-$options = get_option( 'autosofta_json_plugin_options' );
-$mileage = esc_attr( $options['mileage'] );
+$options = get_option( 'autosofta_json_options_mileage' );
+$mileage = esc_attr( $options );
 if ($mileage == '1') $sliders = array(
 array(
     "key" =>  "meta",

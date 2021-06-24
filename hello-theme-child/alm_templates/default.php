@@ -93,13 +93,13 @@
         <?php // Cta and Price ?>
 
         <div class="call">
-        	<div class="phonelink-wrap">
+        	<!-- <div class="phonelink-wrap">
 	        	<a class="phonelink" href="http://wa.link/th3gv8"><i class="fab fa-whatsapp"></i></a>
-	        </div>
+	        </div> -->
         	<?php // echo do_shortcode('[whatsapp phone="358505864479"]Lähetä WhatsApp-viesti[/whatsapp]'); ?> 
-        	<div class="phonelink-wrap">
+        	<!-- <div class="phonelink-wrap">
 	        	<a class="phonelink" href="tel:+358505864479"><i class="fas fa-phone-volume"></i></a>
-	        </div>
+	        </div> -->
         </div>
 
 	   	<div class="read-more">

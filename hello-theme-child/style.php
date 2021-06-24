@@ -2,8 +2,14 @@
     header("Content-type: text/css; charset: UTF-8");
     // needed to load get_option, cant use symlinks to out of public_html
     require_once('../../../wp-config.php');
-    // we get the option field
-    $color = get_option('autosofta_json_plugin_options');
+    // we get the hover color
+    $hover = get_option('autosofta_json_color_hover');
+    // we get the button color
+    $button = get_option('autosofta_json_color_button');
+    // we get the para color
+    $para = get_option('autosofta_json_color_para');
+    // we get the bg color
+    $bg = get_option('autosofta_json_color_bg');
     
     
     
@@ -22,7 +28,7 @@
 .single-car .single-car-content {
   display: block;
   width: 100%;
-  color: #'. esc_attr( $color['para'] ).';
+  color: #'. $para.';
   font-family: "roboto";
 
 }
@@ -52,11 +58,11 @@
 }
 .single-car .single-car-content .car-section .car-back-to {
   display: table;
-  color: #'. esc_attr( $color['hover'] ).';
+  color: #'. $hover.';
   text-decoration: none;
 }
 .single-car .single-car-content .car-section .car-back-to:hover {
-  color: #'. esc_attr( $color['hover'] ).';
+  color: #'. $hover.';
   text-decoration: underline;
 }
 .single-car .single-car-content .car-section .car-slider .slick-slide {
@@ -91,8 +97,8 @@
   height: 30px;
   margin: 0;
   padding: 0;
-  color: #'. esc_attr( $color['bg'] ).';
-  border-color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
+  border-color: #'. $bg.';
   border-width: 1px;
   border-style: double;
   outline: none;
@@ -110,13 +116,13 @@
   }
 }
 .single-car .single-car-content .car-section .car-slider .slick-arrow:hover {
-  background-color: #'. esc_attr( $color['bg'] ).';
-  color: #'. esc_attr( $color['hover'] ).';
+  background-color: #'. $bg.';
+  color: #'. $hover.';
   cursor: pointer;
 }
 .single-car .single-car-content .car-section .car-slider .slick-arrow:focus {
   background-color: transparent;
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
 }
 .single-car .single-car-content .car-section .car-slider .slick-arrow.slick-prev {
   left: 5px;
@@ -127,14 +133,14 @@
 .single-car .single-car-content .car-section .car-ingress {
   flex: 1;
   margin-top: 0;
-  background-color: #'. esc_attr( $color['bg'] ).';
+  background-color: #'. $bg.';
   border-radius: 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   padding: 20px 30px;
 }
 .single-car .single-car-content .car-section .car-ingress h2 {
   margin: 0;
-  color: #'. esc_attr( $color['hover'] ).';
+  color: #'. $hover.';
 }
 .single-car .single-car-content .car-section .car-ingress hr {
   margin: 25px 0;
@@ -148,22 +154,22 @@
   padding: 40px 25px;
   margin: 50px 0 0 0;
   border-radius: 15px;
-  background: #'. esc_attr( $color['hover'] ).';
-  color: #'. esc_attr( $color['bg'] ).';
+  background: #'. $hover.';
+  color: #'. $bg.';
   text-align: center;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta h3, .single-car .single-car-content .car-section .car-ingress div.car-cta h4 {
   margin: 0 0 35px 0;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta h3 a, .single-car .single-car-content .car-section .car-ingress div.car-cta h4 a {
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
   text-decoration: none;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta h3 a:hover, .single-car .single-car-content .car-section .car-ingress div.car-cta h4 a:hover {
   text-decoration: underline;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta h3 a:focus, .single-car .single-car-content .car-section .car-ingress div.car-cta h4 a:focus {
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta .links {
   display: table;
@@ -174,12 +180,12 @@
   display: table;
   margin: 0 0 15px 0;
   transition: all 0.33s ease;
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
   text-decoration: none;
   font-size: calc(18px * 1.2);
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta .links a:hover {
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
   text-decoration: underline;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta .links a i {
@@ -191,17 +197,17 @@
   margin: 0 auto;
   padding: 15px 25px;
   border-radius: 15px;
-  border: 2px solid #'. esc_attr( $color['bg'] ).';
-  background-color: #'. esc_attr( $color['hover'] ).';
-  color: #'. esc_attr( $color['bg'] ).';
+  border: 2px solid #'. $bg.';
+  background-color: #'. $hover.';
+  color: #'. $bg.';
   font-size: 18px;
   letter-spacing: 1.5px;
   text-decoration: none;
 }
 .single-car .single-car-content .car-section .car-ingress div.car-cta .contact-link:hover {
   text-decoration: none;
-  background-color: #'. esc_attr( $color['bg'] ).';
-  color: #'. esc_attr( $color['hover'] ).';
+  background-color: #'. $bg.';
+  color: #'. $hover.';
 }
 .single-car .single-car-content .car-table {
   width: 100%;
@@ -235,10 +241,10 @@
   min-width: 250px;
   transition: all 0.33s ease;
   background-color: transparent;
-  border: 1px solid #'. esc_attr( $color['button'] ).';
+  border: 1px solid #'. $button.';
   border-radius: 15px;
   padding: 15px 30px;
-  color: #'. esc_attr( $color['button'] ).';
+  color: #'. $button.';
   font-weight: bold;
   text-align: center;
   margin: 0 auto;
@@ -259,15 +265,15 @@
 }
 .page-template-page-cars #show-filters:hover,
 .page-template-page-vaihtoautot #show-filters:hover {
-  background-color: #'. esc_attr( $color['button'] ).';
-  color: #'. esc_attr( $color['bg'] ).';
+  background-color: #'. $button.';
+  color: #'. $bg.';
   text-decoration: none;
 }
 .page-template-page-cars #clear-filters,
 .page-template-page-vaihtoautot #clear-filters {
   display: none;
   margin: 25px auto 0 auto;
-  color: #'. esc_attr( $color['button'] ).';
+  color: #'. $button.';
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -366,13 +372,13 @@
 .page-template-page-cars .alm-filters-container .alm-filter.year .alm-range-slider--label .alm-range-start, .page-template-page-cars .alm-filters-container .alm-filter.km .alm-range-slider--label .alm-range-start,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.year .alm-range-slider--label .alm-range-start,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.km .alm-range-slider--label .alm-range-start {
-  color: #'. esc_attr( $color['para'] ).';
+  color: #'. $para.';
   float: left;
 }
 .page-template-page-cars .alm-filters-container .alm-filter.year .alm-range-slider--label .alm-range-end, .page-template-page-cars .alm-filters-container .alm-filter.km .alm-range-slider--label .alm-range-end,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.year .alm-range-slider--label .alm-range-end,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.km .alm-range-slider--label .alm-range-end {
-  color: #'. esc_attr( $color['para'] ).';
+  color: #'. $para.';
   float: right;
 }
 .page-template-page-cars .alm-filters-container .alm-filter.year.km .alm-range-start:after,
@@ -387,7 +393,7 @@
 .page-template-page-cars .alm-filters-container .alm-filter.year .noUi-base .noUi-connect, .page-template-page-cars .alm-filters-container .alm-filter.km .noUi-base .noUi-connect,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.year .noUi-base .noUi-connect,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.km .noUi-base .noUi-connect {
-  background-color: #'. esc_attr( $color['button'] ).';
+  background-color: #'. $button.';
 }
 .page-template-page-cars .alm-filters-container .alm-filter.year .noUi-base .noUi-handle, .page-template-page-cars .alm-filters-container .alm-filter.km .noUi-base .noUi-handle,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter.year .noUi-base .noUi-handle,
@@ -430,7 +436,7 @@
   position: relative;
   padding: 8px 20px;
   outline: none;
-  border-color: #'. esc_attr( $color['button'] ).';
+  border-color: #'. $button.';
   border-width: 2px;
   width: 100%;
   border-radius: 10px;
@@ -447,8 +453,8 @@
 }
 .page-template-page-cars .alm-filters-container .alm-filter .alm-filter--radio .field-radio.active:before,
 .page-template-page-vaihtoautot .alm-filters-container .alm-filter .alm-filter--radio .field-radio.active:before {
-  background-color: #'. esc_attr( $color['button'] ).';
-  border-color: #'. esc_attr( $color['button'] ).';
+  background-color: #'. $button.';
+  border-color: #'. $button.';
 }
 .page-template-page-cars .ajax-load-more-wrap,
 .page-template-page-vaihtoautot .ajax-load-more-wrap {
@@ -480,18 +486,18 @@
   height: auto !important;
   padding: 20px 45px !important;
   font-size: calc(18px * 1.2) !important;
-  background-color: #'. esc_attr( $color['hover'] ).' !important;
+  background-color: #'. $hover.' !important;
   letter-spacing: 1.5px !important;
   font-weight: bold !important;
 }
 .page-template-page-cars .alm-load-more-btn:hover,
 .page-template-page-vaihtoautot .alm-load-more-btn:hover {
   cursor: pointer !important;
-  background-color: #'. esc_attr( $color['button'] ).' !important;
+  background-color: #'. $button.' !important;
 }
 .page-template-page-cars .alm-load-more-btn.done:hover,
 .page-template-page-vaihtoautot .alm-load-more-btn.done:hover {
-  background-color: #'. esc_attr( $color['hover'] ).' !important;
+  background-color: #'. $hover.' !important;
   cursor: default !important;
 }
 .page-template-page-cars .alm-load-more-btn:before,
@@ -512,7 +518,7 @@
 .carslist .listing-title {
   margin: 25px auto 50px auto;
   text-align: center;
-  color: #'. esc_attr( $color['hover'] ).';
+  color: #'. $hover.';
   font-size: calc(18px * 1.8);
 }
 @media (min-width: 576px) {
@@ -525,7 +531,7 @@
   margin: 0 auto;
   max-width: 1600px;
   width: 100%;
-  color: #'. esc_attr( $color['para'] ).';
+  color: #'. $para.';
 }
 
 article > .car-card {
@@ -542,8 +548,8 @@ article > .car-card {
   vertical-align: top;
   width: 100%;
   margin: 15px;
-  background-color: #'. esc_attr( $color['bg'] ).';
-  color: #'. esc_attr( $color['para'] ).';
+  background-color: #'. $bg.';
+  color: #'. $para.';
   font-weight: normal;
 }
 @media (min-width: 768px) {
@@ -580,8 +586,8 @@ article > .car-card {
   bottom: 0;
   right: 0;
   padding: 15px;
-  background-color: #'. esc_attr( $color['button'] ).';
-  color: #'. esc_attr( $color['bg'] ).';
+  background-color: #'. $button.';
+  color: #'. $bg.';
   letter-spacing: 1.5px;
   border-radius: 15px 0 0 0;
 }
@@ -598,19 +604,19 @@ article > .car-card {
   flex: 1;
   font-size: calc(18px * 1.1);
   font-weight: bold;
-  color: #'. esc_attr( $color['button'] ).';
+  color: #'. $button.';
   margin: 0;
 }
 .car-card .inner .text .model a {
   text-decoration: none;
-  color: #'. esc_attr( $color['button'] ).';
+  color: #'. $button.';
 }
 .car-card .inner .text .model a:hover {
   text-decoration: underline;
 }
 .car-card .inner .text .model .definition {
   font-size: 18px;
-  color: #'. esc_attr( $color['para'] ).';
+  color: #'. $para.';
   font-weight: normal;
 }
 .car-card .inner .text .specs {
@@ -665,8 +671,8 @@ article > .car-card {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #'. esc_attr( $color['button'] ).';
-  color: #'. esc_attr( $color['bg'] ).';
+  background-color: #'. $button.';
+  color: #'. $bg.';
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-size: calc(18px * 0.9);
@@ -674,7 +680,7 @@ article > .car-card {
 }
 .car-card .inner .read-more .cta:hover {
   
-  background-color: #'. esc_attr( $color['hover'] ).';
+  background-color: #'. $hover.';
   text-decoration: none;
 }
 .car-card .inner .read-more .cta.green {
@@ -700,7 +706,7 @@ article > .car-card {
   margin: 0 15px;
   width: 45px;
   height: 45px;
-  background-color: #'. esc_attr( $color['button'] ).';
+  background-color: #'. $button.';
   border-radius: 50%;
   font-size: calc(18px * 1.4);
   display: flex;
@@ -710,12 +716,12 @@ article > .car-card {
 }
 .car-card .inner #qlwapp .qlwapp-toggle i,
 .car-card .inner .phonelink i {
-  color: #'. esc_attr( $color['bg'] ).';
+  color: #'. $bg.';
   line-height: normal;
 }
 .car-card .inner #qlwapp .qlwapp-toggle:hover,
 .car-card .inner .phonelink:hover {
-  background-color: #'. esc_attr( $color['hover'] ).';
+  background-color: #'. $hover.';
   text-decoration: none;
 }';
 ?>

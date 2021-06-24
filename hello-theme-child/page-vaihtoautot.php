@@ -2,8 +2,8 @@
 // Antti 2.6.21
 // added api key check
 	// here we get api_key
-	$api = get_option('autosofta_json_plugin_options');
-	$api_key = $api['api_key'];
+	$api_key = get_option('autosofta_json_plugin_options');
+	// $api_key = $api['api_key'];
 /* Template Name: Vaihtoautot */
 /**
  * The template for cars JSON feed
