@@ -24,7 +24,7 @@ function autosofta_json_plugin_clean($option){
  	return $option;
 }
 
-// // let's do an array of color options
+// let's do an array of color options
 // $color = array(
 // 	'autosofta_json_color_hover', 
 // 	'autosofta_json_color_button',
@@ -40,24 +40,43 @@ function wcp_theme_scripts() {
 add_action( 'admin_enqueue_scripts', 'wcp_theme_scripts' );
 
 add_action( 'admin_footer', 'wcp_custom_script' ); // Write our JS below here
-
+$colori = get_option( 'autosofta_json_color_hover' );
 function wcp_custom_script() { ?>
 	<script type="text/javascript" >
+	let rows = [
+	'autosofta_json_color_hover', 
+	'autosofta_json_color_button',
+	'autosofta_json_color_para',
+	'autosofta_json_color_bg'
+	]
+	console.log(rows[1]);
 	jQuery(document).ready(function() {
-		jQuery('#autosofta_json_color_hover').wpColorPicker(); //ehhh, foreach wasn't reliable...
+		jQuery('#autosofta_json_color_hover').wpColorPicker();
 	});
 	jQuery(document).ready(function() {
 		jQuery('#autosofta_json_color_button').wpColorPicker();
 	});
+	</script> 
+
+	<?php
+}
+function wcp_custom_script1() { ?>
+	<script type="text/javascript" >
+	let rows = [
+	'autosofta_json_color_hover', 
+	'autosofta_json_color_button',
+	'autosofta_json_color_para',
+	'autosofta_json_color_bg'
+	]
+	console.log(rows[0]);
 	jQuery(document).ready(function() {
-		jQuery('#autosofta_json_color_para').wpColorPicker();
+		jQuery('#autosofta_json_color_hover').wpColorPicker();
 	});
 	jQuery(document).ready(function() {
-		jQuery('#autosofta_json_color_bg').wpColorPicker();
+		jQuery('#autosofta_json_color_button').wpColorPicker();
 	});
 	</script> 
 	<?php
-}
 
 // lets register settings for api
 function autosofta_json_register_settings() {
@@ -75,7 +94,7 @@ function autosofta_json_register_settings() {
 register_setting( 
 	'autosofta_json_plugin_options', //here we have the group, change dropped autosofta_json... from allowed plugins list
 	'autosofta_json_color_hover', //this line goes to input field name and mysql row name
-								 //in future, do foreach here from an array
+								//in future, do foreach here from an array
 	'autosofta_json_plugin_clean' //but whats this?, let's see if we can use this to validate?
 );
 // button
@@ -149,35 +168,27 @@ function autosofta_json_setting_hover(){
 	$options = get_option( 'autosofta_json_color_hover' );
     echo "<h4>Select colors for cards and single car.</h4>
 	<h4>Use RGB-hex values, i.e. ffffff</h4>
-	Hover<br>
-	<div style='border-style: solid; width:30px; height: 30px; border-radius:50%; background-color:#" . esc_attr( $options ) . ";'></div> 
-	<input id='autosofta_json_color_hover' name='autosofta_json_color_hover' type='text' value='" . esc_attr( $options ) . "' />";
+	Hover<br></hover><input id='autosofta_json_color_hover' name='autosofta_json_color_hover' type='text' value='" . esc_attr( $options ) . "' />";
 									// 							/\ in future do a foreach here /\
 }
 
 // actual input field for button color
 function autosofta_json_setting_button(){
 	$options = get_option( 'autosofta_json_color_button' );
-    echo "Button<br>
-	<div style='border-style: solid; width:30px; height: 30px; border-radius:50%; background-color:#" . esc_attr( $options ) . ";'></div> 
-	<input id='autosofta_json_color_button' name='autosofta_json_color_button' type='text' value='" . esc_attr( $options ) . "' />";
+    echo "Button<br><input id='autosofta_json_color_button' name='autosofta_json_color_button' type='text' value='" . esc_attr( $options ) . "' />";
 }
 
 // actual input field for paragraph color 
 
 function autosofta_json_setting_para(){
 	$options = get_option( 'autosofta_json_color_para' );
-    echo "Paragraph<br>
-	<div style='border-style: solid; width:30px; height: 30px; border-radius:50%; background-color:#" . esc_attr( $options ) . ";'></div> 
-	<input id='autosofta_json_color_para' name='autosofta_json_color_para' type='text' value='" . esc_attr( $options ) . "' />";
+    echo "Paragraph<br><input id='autosofta_json_color_para' name='autosofta_json_color_para' type='text' value='" . esc_attr( $options ) . "' />";
 }
 // actual input field for background  color 
 
 function autosofta_json_setting_bg(){
 	$options = get_option( 'autosofta_json_color_bg' );
-    echo "Background<br>
-	<div style='border-style: solid; width:30px; height: 30px; border-radius:50%; background-color:#" . esc_attr( $options ) . ";'></div> 
-	<input id='autosofta_json_color_bg' name='autosofta_json_color_bg' type='text' value='" . esc_attr( $options ) . "' />";
+    echo "Background<br><input id='autosofta_json_color_bg' name='autosofta_json_color_bg' type='text' value='" . esc_attr( $options ) . "' />";
 }
 
 
