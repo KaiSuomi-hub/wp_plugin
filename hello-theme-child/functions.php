@@ -114,6 +114,39 @@ function AutoSofta_register_required_plugins() {
 			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
 			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
 		),
+		array(
+			'name'               => 'Ajax Load More', // The plugin name.
+			'slug'               => 'ajax-load-more', // The plugin slug (typically the folder name).
+			'source'             => get_template_directory() . '/plugins/ajax-load-more.zip', // The plugin source.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
+			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
+		),
+		array(
+			'name'               => 'Elementor', // The plugin name.
+			'slug'               => 'Elementor', // The plugin slug (typically the folder name).
+			'source'             => get_template_directory() . '/plugins/elementor.zip', // The plugin source.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
+			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
+		),
+		array(
+			'name'               => 'Elementor Pro', // The plugin name.
+			'slug'               => 'elementor-pro.zip', // The plugin slug (typically the folder name).
+			'source'             => get_template_directory() . '/plugins/elementor-pro.zip', // The plugin source.
+			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
+			'version'            => '', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'force_activation'   => true, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
+			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
+			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
+			'is_callable'        => '', // If set, this callable will be be checked for availability to determine if a plugin is active.
+		),
 		// This is an example of how to include a plugin from an arbitrary external source in your theme.
 		/*
 		array(
@@ -261,14 +294,19 @@ function AutoSofta_register_required_plugins() {
 /*Let's copy alm_templates to upload
 *Let's load the functions
 *Let's check if the file exist first though */
-require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
-require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
-$filepath = '/wp-content/uploads/alm_templates/copied.txt';
-$alm_src = './plugins/alm_templates';
-$alm_end = '/wp-content/uploads/alm_templates';
-if ($wp_filesystem->exists($filepath) == false) {
-	$wp_filesystem->copy($alm_src, $alm_end, true);
-}
+// require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
+// require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
+$test_copy = '/wp-content/uploads/alm_templates/copied.txt';
+$alm_src = '/wp-content/themes/hello-theme-child/plugins/alm_templates/default.php';
+$alm_end = '/wp-content/uploads/alm_templates/default.php';
+// echo getcwd() ;
+if (file_exists($test_copy) == 0){
+	echo "alm hasn't been copied";
+	copy($alm_src, $alm_end);
+};
+// if ($wp_filesystem->exists($filepath) == false) {
+// 	$wp_filesystem->copy($alm_src, $alm_end, true);
+// }
 /**
  * Load child theme css and optional scripts
  * @return void
