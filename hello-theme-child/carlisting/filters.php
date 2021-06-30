@@ -1,42 +1,11 @@
 <?php
 /**
- * show or hide sliders and
+ * lets add sliders as variables and check for mileage
  * Generate alm filters
  */
 $options = get_option( 'autosofta_json_options_mileage' );
 $mileage = esc_attr( $options );
-if ($mileage == '1') $sliders = array(
-array(
-    "key" =>  "meta",
-    "field_type" => "range_slider",
-    "classes"      => "year",
-    "meta_key" =>  "car_vuosimalli",
-    "meta_operator" => "BETWEEN",
-    "meta_type" =>  "NUMERIC",
-    "label" => __('Vuosimalli'),
-    "rangeslider_min" => $yearMin,
-    "rangeslider_max" => $yearMax,
-    "rangeslider_steps" => "1", 
-    "rangeslider_start" => $yearMin,
-    "rangeslider_end" =>  $yearMax,
-    "rangeslider_decimals" => "false"
-),                  
 
-array(
-    "key" =>  "meta",
-    "field_type" => "range_slider",
-    "classes"      => "km",
-    "meta_key" =>  "car_km",
-    "meta_operator" =>  "BETWEEN",
-    "meta_type" =>  "NUMERIC",
-    "label" => __('Mittarilukema'),
-    "rangeslider_min" => $kmMin,
-    "rangeslider_max" => $kmMax,
-    "rangeslider_steps" => "10000",
-    "rangeslider_start" => $kmMin,
-    "rangeslider_end" =>  $kmMax,
-    "rangeslider_decimals" => "false"
-));      
 ?>
 
 <a href="#/" id="show-filters"><?php _e('Näytä hakuehdot'); ?></a>
@@ -102,7 +71,42 @@ array(
         sort($valueFilter);
         $modelFilter = $valueFilter;
     }
+// lets check for sliders
 
+if ($mileage == '1') {
+$sliders1 = 
+array(
+    "key" =>  "meta",
+    "field_type" => "range_slider",
+    "classes"      => "year",
+    "meta_key" =>  "car_vuosimalli",
+    "meta_operator" => "BETWEEN",
+    "meta_type" =>  "NUMERIC",
+    "label" => __('Vuosimalli'),
+    "rangeslider_min" => $yearMin,
+    "rangeslider_max" => $yearMax,
+    "rangeslider_steps" => "1", 
+    "rangeslider_start" => $yearMin,
+    "rangeslider_end" =>  $yearMax,
+    "rangeslider_decimals" => "false"
+);                  
+$sliders2 = 
+array(
+    "key" =>  "meta",
+    "field_type" => "range_slider",
+    "classes"      => "km",
+    "meta_key" =>  "car_km",
+    "meta_operator" =>  "BETWEEN",
+    "meta_type" =>  "NUMERIC",
+    "label" => __('Mittarilukema'),
+    "rangeslider_min" => $kmMin,
+    "rangeslider_max" => $kmMax,
+    "rangeslider_steps" => "10000",
+    "rangeslider_start" => $kmMin,
+    "rangeslider_end" =>  $kmMax,
+    "rangeslider_decimals" => "false"
+);
+};
     /** 
      * Alm filter
      */
@@ -199,10 +203,8 @@ array(
             ),       
 
             // Range sliders
-
-          $sliders[0],
-          $sliders[1],                        
-
+            $sliders1,
+            $sliders2,
             // Ordering 
 
             array(
@@ -241,9 +243,11 @@ array(
                 "selected_value" => "date",
                 "default_value" => "date"
             ),
+            // $sliders1,
 
         )
     );
+
 
     echo alm_filters($filter_array, 'alm-cars');
 ?>
