@@ -7,8 +7,9 @@ $options = get_option( 'autosofta_json_options_mileage' );
 $mileage = esc_attr( $options );
 
 ?>
-
-<a href="#/" id="show-filters"><?php _e('Näytä hakuehdot'); ?></a>
+<!-- uncomment to get reset and show filters options- -->
+<!-- <a href="#/" id="show-filters"><?php _e('Näytä hakuehdot');?> </a> -->
+    <!-- <a href="#/" id="clear-filters"><?php _e('Tyhjennä hakuehdot'); ?></a> -->
 
 <div class="filter-section">
 
@@ -201,10 +202,6 @@ array(
                 "classes"      => "clear",
                 "button_label" => ""
             ),       
-
-            // Range sliders
-            $sliders1,
-            $sliders2,
             // Ordering 
 
             array(
@@ -239,11 +236,14 @@ array(
                         "value" => "menu_order",
                     )
                 ),
+                "title" => __('Lajitteluperuste'),
                 "classes" => "orderby",
                 "selected_value" => "date",
                 "default_value" => "date"
             ),
-            // $sliders1,
+              // Range sliders
+              $sliders1,
+              $sliders2,
 
         )
     );
@@ -252,6 +252,5 @@ array(
     echo alm_filters($filter_array, 'alm-cars');
 ?>
 
-<a href="#/" id="clear-filters"><?php _e('Tyhjennä hakuehdot'); ?></a>
 
 </div><!-- /.filter-section -->

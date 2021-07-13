@@ -14,7 +14,36 @@
     
     
 ?>
-
+<?php echo '
+.page-template-page-cars .alm-filters-container, .page-template-page-vaihtoautot .alm-filters-container {
+  display: block;
+  background-color: rgba(124, 124, 124, 0.1);
+  box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+  border-radius: 50px;
+  padding: 15px;
+  margin: 0 15px;
+  text-align: center;
+}
+#alm-filters-cars {
+  display: grid;
+  background-color: rgba(124, 124, 124, 0.1);
+  box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 0 15px;
+  text-align: center;
+  grid-template-columns: 15% 15% 15% 25% 25%;
+  grid-template-rows: auto auto auto auto auto;
+  grid-gap: 10px;
+}
+#alm-filter-7 {
+  display:none;
+}
+.alm-filter--range_slider {
+  width: 90%;
+}
+';
+?>
 <?php echo '.single-car {
   padding: 30px;
   font-size: 18px;
@@ -546,7 +575,7 @@ article > .car-card {
   font-size: 18px;
   display: inline-block;
   vertical-align: top;
-  width: 100%;
+  width: 31%!important;
   margin: 15px;
   background-color: #'. $bg.';
   color: #'. $para.';

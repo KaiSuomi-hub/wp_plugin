@@ -299,14 +299,11 @@ function AutoSofta_register_required_plugins() {
 $test_copy = '/wp-content/uploads/alm_templates/copied.txt';
 $alm_src = '/wp-content/themes/hello-theme-child/plugins/alm_templates/default.php';
 $alm_end = '/wp-content/uploads/alm_templates/default.php';
-$alm_dir = '/wp-content/uploads/alm_templates/';
 // echo getcwd() ;
-
-if (file_exists($alm_end) == 0){
+// if (file_exists($test_copy) == 0){
 	// echo "alm hasn't been copied";
-	mkdir($alm_dir);
-	copy($alm_src, $alm_end);
-};
+	// copy($alm_src, $alm_end);
+// };
 // if ($wp_filesystem->exists($filepath) == false) {
 // 	$wp_filesystem->copy($alm_src, $alm_end, true);
 // }
