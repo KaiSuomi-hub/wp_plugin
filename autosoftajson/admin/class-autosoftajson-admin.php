@@ -36,7 +36,11 @@ function autosofta_json_plugin_clean($option){
 
 function wcp_theme_scripts() { 
 	wp_enqueue_style( 'wp-color-picker');
+	wp_enqueue_script( 'wp-color-picker');
+
 }
+
+
 add_action( 'admin_enqueue_scripts', 'wcp_theme_scripts' );
 
 add_action( 'admin_footer', 'wcp_custom_script' ); // Write our JS below here
