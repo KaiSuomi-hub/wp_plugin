@@ -15,6 +15,23 @@
     
 ?>
 <?php echo '
+
+.noUi-base .noUi-connect {
+  background-color: #'. $button.'!important;
+}
+.alm-filter--radio .field-radio.active:before {
+  background-color: #'. $button.'!important;
+  border-color: #'. $button.'!important;
+}
+.alm-filter--select select {
+  position: relative;
+  padding: 8px 20px;
+  outline: none;
+  border-color: #'. $button.'!important;
+  border-width: 2px;
+  width: 100%;
+  border-radius: 10px;
+}
 .page-template-page-cars .alm-filters-container, .page-template-page-vaihtoautot .alm-filters-container {
   display: block;
   background-color: rgba(124, 124, 124, 0.1);
