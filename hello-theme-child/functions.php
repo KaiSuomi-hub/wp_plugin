@@ -311,6 +311,51 @@ $alm_end = '/wp-content/uploads/alm_templates/default.php';
  * Load child theme css and optional scripts
  * @return void
  */
+
+ // We need to create a vaihtoautot page if it's hasn't been created yet
+// $check_page_exist = get_page_by_title('Vaihtoautot', 'OBJECT', 'page');
+// // Check if the page already exists
+// if(empty($check_page_exist)) {
+//     $page_id = wp_insert_post(
+//         array(
+//         'comment_status' => 'close',
+//         'ping_status'    => 'close',
+//         'post_author'    => 1,
+//         'post_title'     => ucwords('Vaihtoautot'),
+//         'post_name'      => strtolower(str_replace(' ', '-', trim('Vaihtoautot'))),
+//         'post_status'    => 'publish',
+//         'post_content'   => 'nothing here',
+//         'post_type'      => 'page',
+//         'post_parent'    => '0'
+//         )
+//     );
+// }
+
+// Create Vaihtoauto page
+$my_post = array(
+	'post_type'     => 'page',
+	'post_title'    => 'Vaihtoautot',
+	'post_content'  => 'automatic',
+	'post_status'   => 'publish',
+	'post_author'   => 1
+  );
+//Lets put the check for Vaihtoautot to a function, we might need it later
+function the_slug_exists($post_name) {
+global $wpdb;
+if($wpdb->get_row("SELECT post_name FROM wp_posts WHERE post_name = '" . $post_name . "'", 'ARRAY_A')) {
+	return true;
+} else {
+	return false;
+}
+}
+// Check if Vaihtoautot already exists
+// if not, insert the page 
+
+if (the_slug_exists('Vaihtoautot') == FALSE) {
+wp_insert_post( $my_post );
+}
+
+
 function hello_elementor_child_enqueue_styles() {
 	// here we load style via php
 	wp_enqueue_style('hello-elementor-child-style', get_stylesheet_directory_uri() . '/style.php');
